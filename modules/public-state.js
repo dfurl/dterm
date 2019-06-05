@@ -11,7 +11,7 @@ const store = {
   prompt: false
 }
 
-const state = {
+export const publicState = {
   get title () {
     return store.title
   },
@@ -70,4 +70,9 @@ const state = {
   }
 }
 
-export default state
+export async function readState () {
+  let mod = await import(`${window.location.origin}/modules/public-state.js`)
+  return mod.publicState
+}
+
+export default publicState
